@@ -1,4 +1,7 @@
 package bts.sio.azurimmo.model
 
-class Batiment {
-}
+data class Batiment(
+    val id: Int,
+    val adresse: String,
+    val ville: String
+)
