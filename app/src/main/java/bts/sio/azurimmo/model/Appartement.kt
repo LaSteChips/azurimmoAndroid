@@ -1,4 +1,7 @@
 package bts.sio.azurimmo.model
 
-class Appartement {
-}
+data class Appartement(
+    val id: Int,
+    val numero: String,
+    val batiment: String
+)
