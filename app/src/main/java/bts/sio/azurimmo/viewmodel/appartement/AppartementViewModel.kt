@@ -6,15 +6,15 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
 
 class AppartementViewModel : ViewModel() {
-    // Liste mutable des bâtiments
+    // Liste mutable des appartements
     private val _appartements = mutableStateOf<List<Appartement>>(emptyList())
     val appartements: State<List<Appartement>> = _appartements
     private val _isLoading = mutableStateOf(false)
-
     val isLoading: State<Boolean> = _isLoading
     private val _errorMessage = mutableStateOf<String?>(null)
     val errorMessage: State<String?> = _errorMessage
     init {
+// Simuler un chargement de données initiales
         getAppartements()
     }
     private fun getAppartements() {

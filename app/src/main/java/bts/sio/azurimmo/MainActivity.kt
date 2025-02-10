@@ -30,10 +30,7 @@ class MainActivity : ComponentActivity() {
     @Preview(showBackground = true)
     @Composable
     fun PreviewAppartementList() {
-        AppartementList(
-            batimentId = 1, // Valeur fictive pour l'aperçu
-            onAddAppartementClick = {} // Fonction vide pour éviter l'erreur
-        )
+        AppartementList(batimentId = 1)
     }
 
     @Preview(showBackground = true)

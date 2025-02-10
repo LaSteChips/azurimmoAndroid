@@ -28,12 +28,8 @@ fun MainScreen() {
             val batimentId = backStackEntry.arguments?.getInt("batimentId")
 
             if (batimentId != null) {
-                AppartementList(
-                    batimentId = batimentId,
-                    onAddAppartementClick = {
-                        println("Ajout d'un nouvel appartement")
-                    }
-                )
+                AppartementList(batimentId = batimentId)
+//Log.d("BatimentClick", "ID sélectionné : $batimentId")
             } else {
                 Text("Erreur : Identifiant de bâtiment manquant")
             }
