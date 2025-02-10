@@ -3,43 +3,63 @@ package bts.sio.azurimmo
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-// import androidx.compose.foundation.layout.Column
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 import bts.sio.azurimmo.views.appartement.AppartementList
 import bts.sio.azurimmo.views.batiment.BatimentList
+import bts.sio.azurimmo.views.contrat.ContratList
+import bts.sio.azurimmo.views.garant.GarantList
+import bts.sio.azurimmo.views.intervention.InterventionList
+import bts.sio.azurimmo.views.locataire.LocataireList
+import bts.sio.azurimmo.views.paiement.PaiementList
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            // Appel de la fonction principale pour structurer l'affichage
-            AppartementList()
+            InterventionList()
         }
     }
 
-    // Fonction pour prévisualiser BatimentList uniquement
     @Preview(showBackground = true)
     @Composable
     fun PreviewBatimentList() {
         BatimentList()
     }
 
-    // Fonction pour prévisualiser AppartementList uniquement
     @Preview(showBackground = true)
     @Composable
     fun PreviewAppartementList() {
         AppartementList()
     }
-}
 
-// Fonction principale pour afficher les listes
-//@Composable
-//fun MainScreen() {
-//    Column {
-//        // Affiche la liste des bâtiments
-//        BatimentList()
-//        // Affiche la liste des appartements
-//        AppartementList()
-//    }
-//}
+    @Preview(showBackground = true)
+    @Composable
+    fun PreviewContratList() {
+        ContratList()
+    }
+
+    @Preview(showBackground = true)
+    @Composable
+    fun PreviewLocataireList() {
+        LocataireList()
+    }
+
+    @Preview(showBackground = true)
+    @Composable
+    fun PreviewGarantList() {
+        GarantList()
+    }
+
+    @Preview(showBackground = true)
+    @Composable
+    fun PreviewPaiementList() {
+        PaiementList()
+    }
+
+    @Preview(showBackground = true)
+    @Composable
+    fun PreviewInterventionList() {
+        InterventionList()
+    }
+}
