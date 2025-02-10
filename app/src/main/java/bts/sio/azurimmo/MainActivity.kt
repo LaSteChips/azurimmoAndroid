@@ -17,20 +17,23 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            InterventionList()
+            MainScreen()
         }
     }
 
     @Preview(showBackground = true)
     @Composable
     fun PreviewBatimentList() {
-        BatimentList()
+        BatimentList(onBatimentClick = {})
     }
 
     @Preview(showBackground = true)
     @Composable
     fun PreviewAppartementList() {
-        AppartementList()
+        AppartementList(
+            batimentId = 1, // Valeur fictive pour l'aperçu
+            onAddAppartementClick = {} // Fonction vide pour éviter l'erreur
+        )
     }
 
     @Preview(showBackground = true)
