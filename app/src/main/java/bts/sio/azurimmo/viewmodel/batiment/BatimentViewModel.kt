@@ -35,7 +35,6 @@ class BatimentViewModel : ViewModel() {
                 _errorMessage.value = "Erreur : ${e.message}"
             } finally {
                 _isLoading.value = false
-                println("pas de chargement")
             }
         }
     }

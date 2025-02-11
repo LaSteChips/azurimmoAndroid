@@ -1,5 +1,6 @@
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
@@ -7,7 +8,6 @@ import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import bts.sio.azurimmo.views.appartement.AppartementList
 import bts.sio.azurimmo.views.batiment.BatimentList
-import java.lang.reflect.Modifier
 
 @Composable
 fun AppNavigation(navController: NavHostController, modifier: Modifier = Modifier) {
@@ -20,6 +20,9 @@ fun AppNavigation(navController: NavHostController, modifier: Modifier = Modifie
             BatimentList(
                 onBatimentClick = { batimentId ->
                     navController.navigate("batiment_appartements_list/$batimentId")
+                },
+                onAddBatimentClick = {
+                    navController.navigate("add_batiment")
                 }
             )
         }
