@@ -1,5 +1,6 @@
 package bts.sio.azurimmo
 
+
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -21,45 +22,45 @@ class MainActivity : ComponentActivity() {
         }
     }
 
-    @Preview(showBackground = true)
-    @Composable
-    fun PreviewBatimentList() {
-        BatimentList(onBatimentClick = {})
-    }
+    //@Preview(showBackground = true)
+    //@Composable
+    //fun PreviewBatimentList() {
+    //    BatimentList()
+    //}
+//
+    //@Preview(showBackground = true)
+    //@Composable
+    //fun PreviewAppartementList() {
+    //    AppartementList()
+    //}
 
-    @Preview(showBackground = true)
-    @Composable
-    fun PreviewAppartementList() {
-        AppartementList(batimentId = 1)
-    }
-
-    @Preview(showBackground = true)
-    @Composable
-    fun PreviewContratList() {
-        ContratList()
-    }
-
-    @Preview(showBackground = true)
-    @Composable
-    fun PreviewLocataireList() {
-        LocataireList()
-    }
-
-    @Preview(showBackground = true)
-    @Composable
-    fun PreviewGarantList() {
-        GarantList()
-    }
-
-    @Preview(showBackground = true)
-    @Composable
-    fun PreviewPaiementList() {
-        PaiementList()
-    }
-
-    @Preview(showBackground = true)
-    @Composable
-    fun PreviewInterventionList() {
-        InterventionList()
-    }
+    //@Preview(showBackground = true)
+    //@Composable
+    //fun PreviewContratList() {
+    //    ContratList()
+    //}
+//
+    //@Preview(showBackground = true)
+    //@Composable
+    //fun PreviewLocataireList() {
+    //    LocataireList()
+    //}
+//
+    //@Preview(showBackground = true)
+    //@Composable
+    //fun PreviewGarantList() {
+    //    GarantList()
+    //}
+//
+    //@Preview(showBackground = true)
+    //@Composable
+    //fun PreviewPaiementList() {
+    //    PaiementList()
+    //}
+//
+    //@Preview(showBackground = true)
+    //@Composable
+    //fun PreviewInterventionList() {
+    //    InterventionList()
+    //}
 }

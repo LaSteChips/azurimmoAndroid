@@ -1,5 +1,6 @@
 package bts.sio.azurimmo.views.batiment
 
+import BatimentViewModel
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -15,7 +16,7 @@ import androidx.compose.ui.unit.dp
 import bts.sio.azurimmo.model.Batiment
 
 @Composable
-fun BatimentCard(batiment: Batiment, onClick: (Int) -> Unit) { // Notez l'annotation @Composable
+fun BatimentCard(batiment: Batiment, onClick: (Int) -> Unit) {  // Notez l'annotation @Composable
     Card(
         modifier = Modifier
             .fillMaxWidth()
@@ -32,3 +33,6 @@ fun BatimentCard(batiment: Batiment, onClick: (Int) -> Unit) { // Notez l'annota
         }
     }
 }
+
+
+

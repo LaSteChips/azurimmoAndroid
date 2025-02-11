@@ -27,6 +27,7 @@ fun AppartementCard(appartement: Appartement) {
         Column(
             modifier = Modifier.padding(16.dp)
         ) {
+
             Row {
                 Text(
                     text = "Numero : ",
@@ -37,6 +38,7 @@ fun AppartementCard(appartement: Appartement) {
                     style = MaterialTheme.typography.bodyLarge
                 )
             }
+
             Row {
                 Text(
                     text = "Description : ",
@@ -47,6 +49,7 @@ fun AppartementCard(appartement: Appartement) {
                     style = MaterialTheme.typography.bodyLarge
                 )
             }
+
             Row {
                 Text(
                     text = "Surface : ",
@@ -57,16 +60,7 @@ fun AppartementCard(appartement: Appartement) {
                     style = MaterialTheme.typography.bodyLarge
                 )
             }
-            Row {
-                Text(
-                    text = "Adresse : ",
-                    style = MaterialTheme.typography.bodyLarge.copy(fontWeight = FontWeight.Bold)
-                )
-                Text(
-                    text = appartement.batiment.adresse,
-                    style = MaterialTheme.typography.bodyLarge.copy(fontWeight = FontWeight.Bold)
-                )
-            }
         }
     }
 }
+

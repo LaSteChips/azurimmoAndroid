@@ -1,15 +1,19 @@
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
-import bts.sio.azurimmo.model.Appartement
+import bts.sio.azurimmo.model.Batiment
 import androidx.compose.runtime.*
 import androidx.lifecycle.viewModelScope
+import bts.sio.azurimmo.api.RetrofitInstance
 import kotlinx.coroutines.launch
 
-class AppartementViewModel : ViewModel() {
+class BatimentViewModel : ViewModel() {
 
     // Liste mutable des bâtiments
-    private val _appartements = mutableStateOf<List<Appartement>>(emptyList())
-    val appartements: State<List<Appartement>> = _appartements
+    private val _batiments = mutableStateOf<List<Batiment>>(emptyList())
+    val batiments: State<List<Batiment>> = _batiments
+
+    private val _batiment = mutableStateOf<Batiment?>(null)
+    val batiment: State<Batiment?> = _batiment
 
     private val _isLoading = mutableStateOf(false)
     val isLoading: State<Boolean> = _isLoading
@@ -19,15 +23,15 @@ class AppartementViewModel : ViewModel() {
 
     init {
         // Simuler un chargement de données initiales
-        getAppartements()
+        getBatiments()
     }
 
-    private fun getAppartements() {
+    private fun getBatiments() {
         viewModelScope.launch {
             _isLoading.value = true
             try {
-                val response = RetrofitInstance.api.getAppartements()
-                _appartements.value = response
+                val response = RetrofitInstance.api.getBatiments()
+                _batiments.value = response
             } catch (e: Exception) {
                 _errorMessage.value = "Erreur : ${e.message}"
             } finally {
@@ -37,19 +41,15 @@ class AppartementViewModel : ViewModel() {
         }
     }
 
-    fun getAppartementsByBatimentId(batimentId: Int) {
+    fun getBatiment(batimentId: Int) {
         viewModelScope.launch {
             _isLoading.value = true
             try {
-                val response = RetrofitInstance.api.getAppartementsByBatimentId(batimentId)
-                if (response.isNotEmpty()) {
-                    _appartements.value = response
-                    println("Appartements chargés : $response")
-                } else {
-                    println("Aucun appartement trouvé pour le bâtiment $batimentId")
-                }
+                val response = RetrofitInstance.api.getBatimentById(batimentId)
+                _batiment.value = response
+                println("Bâtiment chargé : $response")
             } catch (e: Exception) {
-                println("Erreur lors du chargement des appartements : ${e.message}")
+                println("Erreur lors du chargement du bâtiment : ${e.message}")
             } finally {
                 _isLoading.value = false
             }
@@ -57,3 +57,5 @@ class AppartementViewModel : ViewModel() {
     }
 
 }
+
+
