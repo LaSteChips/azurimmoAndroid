@@ -1,5 +1,6 @@
 package bts.sio.azurimmo
 
+
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -17,49 +18,49 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            InterventionList()
+            MainScreen()
         }
     }
 
-    @Preview(showBackground = true)
-    @Composable
-    fun PreviewBatimentList() {
-        BatimentList()
-    }
+    //@Preview(showBackground = true)
+    //@Composable
+    //fun PreviewBatimentList() {
+    //    BatimentList()
+    //}
+//
+    //@Preview(showBackground = true)
+    //@Composable
+    //fun PreviewAppartementList() {
+    //    AppartementList()
+    //}
 
-    @Preview(showBackground = true)
-    @Composable
-    fun PreviewAppartementList() {
-        AppartementList()
-    }
-
-    @Preview(showBackground = true)
-    @Composable
-    fun PreviewContratList() {
-        ContratList()
-    }
-
-    @Preview(showBackground = true)
-    @Composable
-    fun PreviewLocataireList() {
-        LocataireList()
-    }
-
-    @Preview(showBackground = true)
-    @Composable
-    fun PreviewGarantList() {
-        GarantList()
-    }
-
-    @Preview(showBackground = true)
-    @Composable
-    fun PreviewPaiementList() {
-        PaiementList()
-    }
-
-    @Preview(showBackground = true)
-    @Composable
-    fun PreviewInterventionList() {
-        InterventionList()
-    }
+    //@Preview(showBackground = true)
+    //@Composable
+    //fun PreviewContratList() {
+    //    ContratList()
+    //}
+//
+    //@Preview(showBackground = true)
+    //@Composable
+    //fun PreviewLocataireList() {
+    //    LocataireList()
+    //}
+//
+    //@Preview(showBackground = true)
+    //@Composable
+    //fun PreviewGarantList() {
+    //    GarantList()
+    //}
+//
+    //@Preview(showBackground = true)
+    //@Composable
+    //fun PreviewPaiementList() {
+    //    PaiementList()
+    //}
+//
+    //@Preview(showBackground = true)
+    //@Composable
+    //fun PreviewInterventionList() {
+    //    InterventionList()
+    //}
 }

@@ -1,11 +1,9 @@
-package bts.sio.azurimmo.viewmodel.batiment
-
-import RetrofitInstance
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import bts.sio.azurimmo.model.Batiment
 import androidx.compose.runtime.*
 import androidx.lifecycle.viewModelScope
+import bts.sio.azurimmo.api.RetrofitInstance
 import kotlinx.coroutines.launch
 
 class BatimentViewModel : ViewModel() {
@@ -24,21 +22,21 @@ class BatimentViewModel : ViewModel() {
     val errorMessage: State<String?> = _errorMessage
 
     init {
+        // Simuler un chargement de données initiales
         getBatiments()
-        println("batiment appeler")
     }
 
-    fun getBatiments() {
+    private fun getBatiments() {
         viewModelScope.launch {
             _isLoading.value = true
             try {
                 val response = RetrofitInstance.api.getBatiments()
                 _batiments.value = response
-                println("Réponse API : ${response.joinToString { it.id.toString() }}")
             } catch (e: Exception) {
                 _errorMessage.value = "Erreur : ${e.message}"
             } finally {
                 _isLoading.value = false
+                println("pas de chargement")
             }
         }
     }
@@ -57,22 +55,7 @@ class BatimentViewModel : ViewModel() {
             }
         }
     }
-    fun addBatiment(batiment: Batiment) {
-        viewModelScope.launch {
-            _isLoading.value = true
-            try {
-                val response = RetrofitInstance.api.addBatiment(batiment)
-                if (response.isSuccessful) {
-                    // Recharger les bâtiments après ajout
-                    getBatiments()
-                } else {
-                    _errorMessage.value = "Erreur lors de l'ajout du bâtiment : ${response.message()}"
-                }
-            } catch (e: Exception) {
-                _errorMessage.value = "Erreur : ${e.message}"
-            } finally {
-                _isLoading.value = false
-            }
-        }
-    }
+
 }
+
+

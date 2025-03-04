@@ -1,0 +1,76 @@
+package bts.sio.azurimmo.views
+
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavHostController
+import androidx.navigation.NavType
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.navArgument
+import bts.sio.azurimmo.views.appartement.AppartementAdd
+import bts.sio.azurimmo.views.appartement.AppartementList
+import bts.sio.azurimmo.views.batiment.BatimentAdd
+import bts.sio.azurimmo.views.batiment.BatimentList
+
+@Composable
+fun AppNavigation(navController: NavHostController, modifier: Modifier = Modifier) {
+    NavHost(
+        navController = navController,
+        startDestination = "batiment_list",
+        modifier = modifier
+    ) {
+
+        composable("batiment_list") {
+            BatimentList(
+                onBatimentClick = { batimentId ->
+                    navController.navigate("batiment_appartements_list/$batimentId")
+                },
+                onAddBatimentClick = {
+                    navController.navigate("add_batiment")
+                }
+            )
+        }
+        // Route pour ajouter un appartement
+        composable(
+            "add_appartement/{batimentId}",
+            arguments = listOf(navArgument("batimentId") { type = NavType.IntType })
+        ) { backStackEntry ->
+            val batimentId = backStackEntry.arguments?.getInt("batimentId")
+            println("Ouverture de add_appartement avec batimentId = $batimentId")
+
+            if (batimentId != null) {
+                AppartementAdd(
+                    onAddAppartement = { navController.popBackStack() },
+                    batimentId = batimentId
+                )
+            } else {
+                Text("Erreur : Identifiant de bâtiment manquant")
+            }
+        }
+
+        composable(
+            route = "batiment_appartements_list/{batimentId}",
+            arguments = listOf(navArgument("batimentId") { type = NavType.IntType })
+        ) { backStackEntry ->
+            val batimentId = backStackEntry.arguments?.getInt("batimentId")
+            if (batimentId != null) {
+                AppartementList(
+                    batimentId = batimentId,
+                    onAppartementClick = {},
+                    onAddAppartementClick = { navController.navigate("add_appartement/$batimentId") } )
+            } else {
+                Text("Erreur : Identifiant de bâtiment manquant")
+            }
+        }
+
+        composable("add_batiment") {
+            BatimentAdd(onBatimentAdd = {
+                navController.popBackStack() // La navigation est gérée ici
+            })
+        }
+
+    }
+
+}
