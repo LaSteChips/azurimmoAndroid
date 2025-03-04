@@ -1,8 +1,10 @@
+package bts.sio.azurimmo.viewmodel.appartement
+
+import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
-import bts.sio.azurimmo.model.Appartement
-import androidx.compose.runtime.*
 import androidx.lifecycle.viewModelScope
+import bts.sio.azurimmo.model.Appartement
 import kotlinx.coroutines.launch
 
 class AppartementViewModel : ViewModel() {
@@ -55,5 +57,22 @@ class AppartementViewModel : ViewModel() {
             }
         }
     }
-
+    fun addAppartement(appartement: Appartement) {
+        viewModelScope.launch {
+            _isLoading.value = true
+            try {
+                val response = RetrofitInstance.api.addAppartement(appartement)
+                if (response.isSuccessful) {
+                    // Recharger les bâtiments après ajout
+                    getAppartements()
+                } else {
+                    _errorMessage.value = "Erreur lors de l'ajout du bâtiment : ${response.message()}"
+                }
+            } catch (e: Exception) {
+                _errorMessage.value = "Erreur : ${e.message}"
+            } finally {
+                _isLoading.value = false
+            }
+        }
+    }
 }

@@ -1,7 +1,7 @@
 package bts.sio.azurimmo.views.appartement
 
-import AppartementViewModel
-import BatimentViewModel
+import bts.sio.azurimmo.viewmodel.appartement.AppartementViewModel
+import bts.sio.azurimmo.viewmodel.batiment.BatimentViewModel
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -12,7 +12,11 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.FloatingActionButton
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -25,9 +29,12 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 
 @Composable
-fun AppartementList( viewModel: AppartementViewModel = viewModel(),
-                     batimentId: Int,
-) {
+fun AppartementList(
+    batimentId: Int, // Ajoutez ce paramètre
+    viewModel: AppartementViewModel = viewModel(),
+    onAppartementClick: (Unit) -> Unit,
+    onAddAppartementClick: () -> Unit // Callback pour ajouter un bâtiment
+)  {
 
     val viewModelBat: BatimentViewModel = viewModel()
     val appartements = viewModel.appartements.value
@@ -36,7 +43,6 @@ fun AppartementList( viewModel: AppartementViewModel = viewModel(),
     val errorMessage = viewModel.errorMessage.value
 
     LaunchedEffect(batimentId) {
-        println("Chargement des données pour le bâtiment : $batimentId")
         viewModel.getAppartementsByBatimentId(batimentId)
         viewModelBat.getBatiment(batimentId)
     }
@@ -57,6 +63,19 @@ fun AppartementList( viewModel: AppartementViewModel = viewModel(),
                 )
             }
             else -> {
+                FloatingActionButton(
+                    onClick = {
+                        println("Bouton + cliqué") // Vérification Logcat
+                        onAddAppartementClick()
+                    },
+                    modifier = Modifier
+                        .align(Alignment.BottomEnd) // Assure qu'il est bien visible
+                        .padding(16.dp)
+                        .background(MaterialTheme.colorScheme.secondary),
+                    content = {
+                        Icon(Icons.Default.Add, contentDescription = "Ajouter un appartement")
+                    }
+                )
                 LazyColumn {
                     if (batiment!=null) {
                         item {

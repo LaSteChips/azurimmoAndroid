@@ -1,6 +1,6 @@
 package bts.sio.azurimmo.views.batiment
 
-import BatimentViewModel
+import bts.sio.azurimmo.viewmodel.batiment.BatimentViewModel
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -13,6 +13,7 @@ import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
@@ -28,6 +29,10 @@ fun BatimentList(
     val batiments = viewModel.batiments.value
     val isLoading = viewModel.isLoading.value
     val errorMessage = viewModel.errorMessage.value
+
+    LaunchedEffect(Unit) {
+        viewModel.getBatiments()
+    }
 
     Box(modifier = Modifier.fillMaxSize()) {
         when {
@@ -50,14 +55,16 @@ fun BatimentList(
                     Button(
                         onClick = onAddBatimentClick,
                         modifier = Modifier
-                            .padding(16.dp)
                             .widthIn(min = 150.dp, max = 300.dp)
+                            .align(Alignment.CenterHorizontally)
+                            .padding(16.dp)
                     ) {
                         Text("Ajouter un bâtiment")
                     }
                     LazyColumn {
                         // Ajouter un titre pour la liste des bâtiments
                         items(batiments) { batiment ->
+                            println("Liste des bâtiments : ${batiments.joinToString { it.id.toString() }}")
                             BatimentCard(
                                 batiment = batiment,
                                 onClick = { onBatimentClick (batiment.id)}
