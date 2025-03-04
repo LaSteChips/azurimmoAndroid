@@ -44,19 +44,23 @@ class AppartementViewModel : ViewModel() {
             _isLoading.value = true
             try {
                 val response = RetrofitInstance.api.getAppartementsByBatimentId(batimentId)
-                if (response.isNotEmpty()) {
-                    _appartements.value = response
-                    println("Appartements chargés : $response")
-                } else {
+
+                println("Appartements reçus: $response") // Debugging
+
+                _appartements.value = response.filter { it.batiment.id == batimentId }
+
+                if (_appartements.value.isEmpty()) {
                     println("Aucun appartement trouvé pour le bâtiment $batimentId")
                 }
             } catch (e: Exception) {
                 println("Erreur lors du chargement des appartements : ${e.message}")
+                _errorMessage.value = "Erreur : ${e.message}"
             } finally {
                 _isLoading.value = false
             }
         }
     }
+
     fun addAppartement(appartement: Appartement) {
         viewModelScope.launch {
             _isLoading.value = true
